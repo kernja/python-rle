@@ -117,11 +117,9 @@ class RLEBitmap:
         
         #iterate through image
         #row by row
-        #while y <= self.height - 1:
         for y in range(0, self.height):
             #column by column
             for x in range(0, self.width):
-            #while x <= self.width - 1:
                 #get the current pixel
                 newColor = self.pixels[x, y] 
 
@@ -140,7 +138,7 @@ class RLEBitmap:
                         
                         #set the new color to our currentcolor 
                         currentColor = newColor
-                        #set the count equal to 1, as we stumbled across this new value and we need to count iter
+                        #set the count equal to 1, as we need to count it as part of the new run
                         currentColorCount = 1
                     else:
                         currentColor = newColor
@@ -148,13 +146,7 @@ class RLEBitmap:
                 else:
                     currentColorCount += 1
                 
-                #move over one column
-                #x += 1
-            #move over one row
-            #x = 0
-            #y += 1
-        
-        #write out the last of the colors we were working on, into the array
+        #flush out the last of the colors we were working on, into the array
         colors.setdefault(currentColor, len(colors.keys()))
         colorIndex = colors[currentColor]
         pixels.append((colorIndex, currentColorCount))
